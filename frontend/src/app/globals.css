@@ -1,0 +1,534 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   FLOWBOARD DESIGN SYSTEM
+   ========================================================================== */
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  color-scheme: light;
+
+  /* ---------- surfaces ---------- */
+
+  --background: #F7F6F3;
+  --background-2: #F1F0ED;
+
+  --surface: #FFFFFF;
+  --surface-2: #F1F0ED;
+  --surface-hover: #ECEAE4;
+
+  /* ---------- ink ---------- */
+
+  --ink: #171717;
+  --ink-2: #77736F;
+  --ink-3: #9C9893;
+  --ink-inverted: #F7F6F3;
+
+  /* ---------- borders ---------- */
+
+  --border: #E9E6E1;
+  --border-strong: #DCD8D1;
+
+  /* ---------- brand ---------- */
+
+  --accent: #6254E8;
+  --accent-hover: #5042D4;
+  --accent-tint: #EFEBFF;
+
+  /* White text on primary buttons */
+  --accent-ink: #ffffff;
+
+  /* ---------- environment accents ---------- */
+
+  --draw: #7656c7;
+  --write: #3474c5;
+  --design: #b5547b;
+  --plan: #a56b18;
+  --connect: #258f83;
+  --resources: #5b6472;
+
+  /* ---------- feedback ---------- */
+
+  --success: #23864d;
+  --warning: #a56b18;
+  --danger: #c94138;
+
+  /* ---------- elevation ---------- */
+
+  --shadow-sm: 0 1px 2px rgba(23, 23, 23, 0.04);
+
+  --shadow-md: 0 8px 24px -8px rgba(23, 23, 23, 0.08);
+
+  --shadow-lg: 0 24px 48px -16px rgba(23, 23, 23, 0.12);
+
+  /* ---------- radius ---------- */
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+}
+
+/* ==========================================================================
+   DARK THEME
+   ========================================================================== */
+
+.dark {
+  color-scheme: dark;
+
+  /* ---------- surfaces ---------- */
+
+  --background: #0C0D10;
+  --background-2: #17191F;
+
+  --surface: #1C1E25;
+  --surface-2: #17191F;
+  --surface-hover: #242731;
+
+  /* ---------- ink ---------- */
+
+  --ink: #F4F3F7;
+  --ink-2: #A09EAA;
+  --ink-3: #6C6A76;
+  --ink-inverted: #171717;
+
+  /* ---------- borders ---------- */
+
+  --border: #292B34;
+  --border-strong: #383B47;
+
+  /* ---------- brand ---------- */
+
+  --accent: #8275FF;
+  --accent-hover: #978CFF;
+  --accent-tint: #1F1C38;
+
+  /* White text on primary buttons */
+  --accent-ink: #ffffff;
+
+  /* ---------- environment accents ---------- */
+
+  --draw: #a487ff;
+  --write: #6ea0ff;
+  --design: #e58fb4;
+  --plan: #e3a23c;
+  --connect: #3fc2b0;
+  --resources: #98a1ae;
+
+  /* ---------- feedback ---------- */
+
+  --success: #3ecb7e;
+  --warning: #e3a23c;
+  --danger: #f0655c;
+
+  /* ---------- elevation ---------- */
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+
+  --shadow-md: 0 8px 24px -8px rgba(0, 0, 0, 0.45);
+
+  --shadow-lg: 0 24px 48px -16px rgba(0, 0, 0, 0.6);
+}
+
+/* ==========================================================================
+   TAILWIND THEME TOKENS
+   ========================================================================== */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-background-2: var(--background-2);
+
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-hover: var(--surface-hover);
+
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-ink-inverted: var(--ink-inverted);
+
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-tint: var(--accent-tint);
+  --color-accent-ink: var(--accent-ink);
+
+  --color-draw: var(--draw);
+  --color-write: var(--write);
+  --color-design: var(--design);
+  --color-plan: var(--plan);
+  --color-connect: var(--connect);
+  --color-resources: var(--resources);
+
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+
+  --font-display: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
+
+  --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  --font-mono: var(--font-jetbrains), ui-monospace, "SFMono-Regular", monospace;
+}
+
+/* ==========================================================================
+   RESET & BASE
+   ========================================================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/*
+ * Clean, modern theme transition:
+ * Applied to major container elements only so the switch feels instant
+ * and clean without the lag or visual noise of blanket '*' transitions.
+ */
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+header,
+section,
+footer {
+  transition: background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+@layer base {
+  a {
+    color: inherit;
+  }
+}
+
+/* Ensure text-white and accent buttons are always pure white */
+.text-white,
+.text-accent-ink {
+  color: #ffffff !important;
+}
+
+/* ==========================================================================
+   SELECTION
+   ========================================================================== */
+
+::selection {
+  background: var(--accent-tint);
+  color: var(--accent);
+}
+
+/* ==========================================================================
+   SCROLLBAR
+   ========================================================================== */
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ink-3);
+}
+
+/* ==========================================================================
+   DASHBOARD MICRO-INTERACTIONS
+   ========================================================================== */
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(140, 140, 140, 0.2);
+  border-radius: 9999px;
+}
+
+.custom-scrollbar:hover::-webkit-scrollbar-thumb {
+  background: rgba(140, 140, 140, 0.4);
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.dark .custom-scrollbar:hover::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.24);
+}
+
+.nav-tooltip {
+  visibility: hidden;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.group:hover .nav-tooltip {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.sidebar-collapsed .sidebar-text-element {
+  display: none !important;
+}
+
+/* Dashboard sidebar uses native nested scrolling. */
+.flowboard-sidebar-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+}
+
+.flowboard-sidebar-scroll::-webkit-scrollbar {
+  width: 7px;
+}
+
+.flowboard-sidebar-scroll::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 999px;
+}
+
+.flowboard-sidebar-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ==========================================================================
+   MEDIA
+   ========================================================================== */
+
+img,
+picture,
+video,
+canvas,
+svg {
+  max-width: 100%;
+}
+
+/* ==========================================================================
+   ACCESSIBILITY
+   ========================================================================== */
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ==========================================================================
+   FLOWBOARD CONTAINER
+   ========================================================================== */
+
+.container-flow {
+  width: 100%;
+  max-width: 1240px;
+  margin-inline: auto;
+  padding-inline: 20px;
+}
+
+@media (min-width: 640px) {
+  .container-flow {
+    padding-inline: 28px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-flow {
+    padding-inline: 40px;
+  }
+}
+
+/* ==========================================================================
+   TYPOGRAPHY
+   ========================================================================== */
+
+.section-heading {
+  font-size: clamp(1.75rem, 1.35rem + 1.8vw, 2.5rem);
+
+  line-height: 1.15;
+}
+
+.hero-heading {
+  font-size: clamp(2.1rem, 1.2rem + 4.2vw, 3.6rem);
+
+  line-height: 1.05;
+}
+
+/* ==========================================================================
+   GRAIN / NOISE
+   ========================================================================== */
+
+.grain-noise {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+
+  background-size: 140px 140px;
+}
+
+
+/* ==========================================================================
+   SKELETON LOADING
+   ========================================================================== */
+
+.flowboard-skeleton {
+  position: relative;
+  overflow: hidden;
+  background: var(--surface-hover);
+}
+
+.flowboard-skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.10), transparent);
+  animation: flowboard-skeleton-shimmer 1.6s ease-in-out infinite;
+}
+
+.dark .flowboard-skeleton::after {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.045), transparent);
+}
+
+@keyframes flowboard-skeleton-shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.flowboard-loading-bar {
+  animation: flowboard-loading-bar 1.25s ease-in-out infinite;
+  transform-origin: left center;
+}
+
+@keyframes flowboard-loading-bar {
+  0% {
+    transform: translateX(-110%) scaleX(0.65);
+  }
+  50% {
+    transform: translateX(40%) scaleX(1);
+  }
+  100% {
+    transform: translateX(210%) scaleX(0.65);
+  }
+}
+
+/* ==========================================================================
+   TOASTS & DIALOGS
+   ========================================================================== */
+
+@keyframes flowboard-toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-toast-in {
+  animation: flowboard-toast-in 0.2s ease-out;
+}
+
+@keyframes flowboard-dialog-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-dialog-in {
+  animation: flowboard-dialog-in 0.16s ease-out;
+}
+
+@keyframes flowboard-overlay-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-overlay-in {
+  animation: flowboard-overlay-in 0.16s ease-out;
+}
+
+/* ==========================================================================
+   REDUCED MOTION
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+
+    animation-iteration-count: 1 !important;
+
+    transition-duration: 0.01ms !important;
+
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ==========================================================================\n   DASHBOARD / APP SURFACE REFINEMENTS\n   ========================================================================== */
+.flowboard-sidebar-scroll { scrollbar-width: thin; scrollbar-color: var(--border-strong) transparent; }
+.flowboard-sidebar-scroll::-webkit-scrollbar { width: 7px; }
+.flowboard-sidebar-scroll::-webkit-scrollbar-track { background: transparent; }
+.flowboard-sidebar-scroll::-webkit-scrollbar-thumb { background: transparent; border-radius: 999px; }
+.flowboard-sidebar-scroll:hover::-webkit-scrollbar-thumb { background: var(--border-strong); }
+
+@media (prefers-reduced-motion: reduce) {
+  .flowboard-sidebar-scroll { scroll-behavior: auto; }
+}
